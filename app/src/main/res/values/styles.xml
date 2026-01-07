@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="general_list_style">
+        <item name="android:background">@drawable/bg_card_scifi</item>
+        <item name="android:dividerHeight">0dp</item>
+    </style>
+    
+
+    <style name="EditTextStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/scifi_cyan</item>
+        <item name="hintTextColor">@color/scifi_cyan</item>
+        <item name="android:textColor">@color/text_primary</item>
+    </style>
+
+
+    <style name="black_shadowed_font" parent="SubtitleText" />
+    <style name="blue_background_white_shadowed_font" parent="Widget.App.Button" />
+    
+</resources>

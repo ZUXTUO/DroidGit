@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DroidGit</string>
+    <string name="add_user_fullname">氏名</string>
+    <string name="add_user_email">メールアドレス</string>
+    <string name="add_user_username">ユーザー名</string>
+    <string name="add_user_password">パスワード</string>
+    <string name="add_user_publickey">公開鍵</string>
+    <string name="add_repository_name">名前</string>
+    <string name="add_repository_mapping">マッピング</string>
+    <string name="add_repository_description">説明</string>
+    <string name="add_user_title">新規ユーザー追加</string>
+    <string name="add_user_activate">ユーザーを有効化</string>
+    <string name="add_repository_title">リポジトリ追加</string>
+    <string name="click_to_disable">クリックで無効化</string>
+    <string name="click_to_enable">クリックで有効化</string>
+    <string name="settings_git_repositories_directory">Gitリポジトリディレクトリ</string>
+    <string name="settings_http_server_port">HTTPサーバーポート</string>
+
+
+	<string name="repositories_no_repositories_label">リポジトリなし</string>
+	<string name="users_no_users_label">ユーザーなし</string>
+	<string name="home_start">開始</string>
+	<string name="home_stop">停止</string>
+	<string name="statusbar_notification">ステータスバー通知</string>
+	<string name="autostart">自動開始</string>
+	<string name="autostart_summary_on">WiFi接続時に自動開始</string>
+	<string name="autostart_summary_off">WiFi接続時に自動開始</string>
+	<string name="autostop">自動停止</string>
+	<string name="autostop_summary_on">WiFi切断時に自動停止</string>
+	<string name="autostop_summary_off">WiFi切断時に自動停止</string>
+
+	<string name="wifi_connected_to">WiFi接続済み</string>
+	<string name="network_ready">ネットワーク準備完了</string>
+	<string name="wifi_not_connected">WiFiが接続されていません</string>
+	<string name="no_repositories">リポジトリなし</string>
+	<string name="add_permission">権限を追加</string>
+	<string name="no_permissions">権限なし</string>
+	<string name="permissions">権限</string>
+	<string name="edit">編集</string>
+	<string name="activate">有効化</string>
+	<string name="deactivate">無効化</string>
+	<string name="delete">削除</string>
+	<string name="repository_details">リポジトリ詳細</string>
+	<string name="no_users">ユーザーなし</string>
+	<string name="add_repository_activate">リポジトリを有効化</string>
+	<string name="server_settings">サーバー設定</string>
+	<string name="general_settings">一般設定</string>
+	<string name="eula">
+		DroidGit エンドユーザーライセンス契約 (EULA)\n
+		\n
+		DroidGit エンドユーザーライセンス契約 (EULA) は、お客様と DroidGit ソフトウェア開発者との間の法的契約です。すべての条項、特に開発者の責任を免除または制限する条項、およびユーザーの権利を制限する条項を注意深く読み、理解してください。\n
+		\n
+		本契約は、DroidGit Git サーバー アプリケーションのユーザー (以下「ユーザー」) に適用され、ソフトウェアの使用条件を指定することを目的としています。\n
+		\n
+		以下の内容を注意深くお読みください。本契約のいずれかの部分に同意しない場合は、DroidGit ソフトウェアおよびサービスを使用しないでください。本ソフトウェアをインストール、コピー, またはその他の方法で使用することにより, お客様は DroidGit 開発者 (Olsc) と合意し, 本契約のすべての条項を自発的に受け入れるものとします。\n
+		\n
+		本ソフトウェアはオープンソースの Git サーバー アプリケーションであり, Apache License, Version 2.0 に基づいてリリースされ, Olsc によって開発および保守されています。\n
+		\n
+		ユーザーのプライバシーを尊重することは, 開発者の基本原則です。\n
+		\n
+		I. 権限の説明\n
+		オープンソースの Git サーバー アプリケーションとして, DroidGit はコア機能を提供するために以下の権限を必要とします。これらの権限の特定の目的はここで宣言されています。\n
+		\n
+		1. ストレージ権限: アプリは, Git リポジトリ ファイルを作成, 読み取り, 書き込みするために「ストレージの読み取り」および「ストレージの書き込み」権限を必要とします。これはコア機能に不可欠です。\n
+		\n
+		2. ネットワーク権限: アプリは, HTTP サーバーを開始するために「ネットワーク接続」権限を必要とし, 他のデバイスがネットワーク経由で Git リポジトリにアクセスできるようにします。これには, サービスを自動制御するためにネットワーク ステータスを監視するための「完全なネットワーク アクセス」, 「WLAN 接続の表示」, 「ネットワーク接続の変更」などの権限が含まれます。\n
+		\n
+		3. 位置情報権限: Android 8.1+ システムでは, 現在の WiFi 名 (SSID) を取得するために位置情報権限が必要です。これはネットワーク情報の取得にのみ使用されます。地理的な位置データは収集しません。\n
+		\n
+		4. フォアグラウンド サービスおよびウェイク ロック権限: 画面がオフのときやアプリがバックグラウンドで実行されているときに Git サーバーがアクティブな状態を維持し, 接続の中断を防ぐために使用されます。\n
+		\n
+		5. 通知権限: ステータス バーにサービス ステータスを表示し, バックグラウンド サービスがシステムによって強制終了されるのを防ぐために使用されます。\n
+		\n
+		6. クエリ パッケージ権限: 寄付ページで, 他に必要なソフトウェアがインストールされているかどうかを検出するために使用されます。\n
+		\n
+		7. 自動起動権限: デバイスの起動時に Git サーバーを自動的に開始するために使用されます (オプション機能)。\n
+		\n
+		8. 自動停止権限: WiFi が切断されたときにサーバーを自動的に停止するために使用されます (オプション機能)。\n
+		\n
+		このアプリはユーザーのプライバシーを尊重します。すべてのデータはお客様のローカル デバイスに保存されます。オープンソース ソフトウェアとして, お客様はこのソフトウェアを自由に使用, 学習, 変更, 配布することができます。必要なネットワーク サービス (他のデバイスが Git リポジトリにアクセスできるようにする) を除き, 個人プライバシー データはアップロードしません。\n
+		\n
+		II. 免責事項\n
+		以下の行為は厳格に禁止されています。\n
+		\n
+		1. インストール パッケージの不正な解凍, リバース エンジニアリング, アプリケーション コンテンツの変更, 個人としての転送, または著作権保護を回避するための追加料金の請求。\n
+		\n
+		2. DroidGit を違法行為や現地の法律および規制に違反する目的で使用すること。これには, 他者の知的財産権の侵害や違法なコンテンツの拡散が含まれますが, これらに限定されません。\n
+		\n
+		3. ユーザーは Git サーバー機能を合理的に使用する必要があり, 悪意のある攻撃, 大規模なネットワーク帯域幅の消費, または他者の通常の使用に影響を与えるその他のアクションのためにサービスを悪用してはなりません。\n
+		\n
+		4. DroidGit は Git サーバー アプリであるため, ユーザーはホストされているコード リポジトリのコンテンツが合法で準拠していることを確認する責任があります。開発者は, ユーザーによってホストされているコンテンツに対して責任を負いません。\n
+		\n
+		5. ユーザーはアカウントとパスワード情報を適切に保護する必要があります。開発者は, ユーザーによる不適切な保管によって発生したセキュリティ問題に対して責任を負いません。\n
+		\n
+		6. DroidGit はネットワーク アクセスを許可するため, ユーザーは不適切な設定によるリスクを回避するために, 正しいネットワーク セキュリティ構成を確認する責任があります。\n
+		\n
+		7. 別段の定めがある場合を除き, 開発者は以下について責任を負いません。\n
+		\n
+		(1) ハッカー攻撃, コンピュータ ウイルス, 電気通信部門による技術調整, 政府の規制による一時的な閉鎖, または第三者の原因 (国際基幹リンクの故障, 火災, 洪水, 落雷, 地震, 台風, 火山噴火, 疫病, ストライキ, 戦争などの不可抗力を含む) によって発生した影響。および, 開発者自身の過失によらないユーザーの個人データの悪意のある収集, 漏洩, 紛失, 盗難, または改ざん, およびその結果として生じたユーザーおよび第三者への損害。\n
+		\n
+		(2) DroidGit を使用する際は, 現地の法律および規制, ならびに国際的に認められたインターネット行動基準を遵守する必要があります。DroidGit を, 平和, 尊重, 平等の原則に違反するいかなる活動にも使用してはなりません。これには以下が含まれますが, これらに限定されません。\n
+		\n
+		(a) ヘイトスピーチ, 差別, 人種差別, または暴力を助長すること。\n
+		(b) 児童性的虐待素材 (CSAM), テロリスト コンテンツ, または違法な嫌がらせを配布すること。\n
+		(c) 他者のプライバシー, 名誉, または知的財産権を侵害すること。\n
+		(d) 悪意を持ってネットワーク セキュリティを侵害したり, マルウェアを拡散したり, サイバー攻撃を行ったりすること。\n
+		(e) 国際的人権規約に違反するいかなる活動にも従事すること。\n
+		\n
+		III. 制限条項\n
+		Apache License, Version 2.0 に基づいてリリースされたオープンソースの Git サーバー アプリケーションとして, お客様は Apache ライセンスの条項に基づいて, ソフトウェアを使用, 変更, および配布する自由を享受できます。\n
+		\n
+		DroidGit サービスを使用する際は, 現地の法律および規制を遵守し, 現地の道徳および習慣を尊重する必要があります。お客様の行為が現地の法律または習慣に違反する場合, お客様は独立して責任を負うものとします。\n
+		\n
+		オープンソース ソフトウェアのユーザーとして, お客様は本ソフトウェアのソース コードを入手する権利があり, Apache License, Version 2.0 ライセンスの条項に従って, 本ソフトウェアを自由に使用, 変更, および配布することができます。\n
+		\n
+		DroidGit サービスの使用を通じて開発者を政治的および公的なイベントに巻き込むことは避けてください。そうでない場合, 開発者はお客様へのサービスを一時停止または終了する権利を有します。\n
+		\n
+		IV. ポリシーの変更\n
+		お客様が確認し, 同意した後でのみ, 変更された DroidGit エンドユーザーライセンス契約 (EULA) の条項に基づいてサービスを提供することをご理解ください。お客様は変更された契約を拒否する権利がありますが, 一度拒否すると, DroidGit のサービスおよび機能を引き続き使用できなくなる可能性があることに注意してください。\n
+		\n
+		変更が発生した場合は, 変更が有効になる前にお客様に通知し, 再度同意を得るものとします。変更に同意しない場合は, サービスの利用を停止することを選択できます。引き続きサービスを利用する場合は, 改訂された EULA に拘束されることに同意したものとみなされます。\n
+		\n
+		V. 知的財産権\n
+		DroidGit は, Apache License, Version 2.0 に基づいてリリースされたオープンソースの Git サーバー アプリケーションであり, Olsc によって開発および保守されています。Apache ライセンスに基づいてリリースされており, ライセンス条項を遵守することを条件に, お客様は本ソフトウェアを使用, コピー, 配布, および変更する権利を有します。\n
+		\n
+		Apache License, Version 2.0 ライセンスの主な内容は以下のとおりです。\n
+		\n
+		1. お客様は, あらゆる目的で本ソフトウェアを使用する権利を有します。\n
+		2. お客様は, 必要に応じてソース コードを学習および変更する権利を有します。\n
+		3. お客様は, 本ソフトウェアおよびそのコピーを配布する権利を有します。\n
+		4. お客様は, 本ソフトウェアの変更されたバージョンを配布する権利を有します。\n
+		\n
+		Apache ライセンスの要件に従い, お客様はすべての配布コピーに元の著作権表示および免責事項を含める必要があります。完全なライセンス条項については, プロジェクト ルートの LICENSE ファイルを参照してください。\n
+		\n
+		VI. お問い合わせ\n
+		ネットワーク 情報セキュリティに関する苦情や報告がある場合, またはこの EULA およびお客様の情報に関する質問, 意見, 提案がある場合, またはこの声明に関する質問がある場合は, お問い合わせください。\n
+		\n
+		このプロジェクトは Apache License, Version 2.0 ライセンスに基づいたオープンソース プロジェクトです。ソース コードと詳細な連絡先情報はプロジェクトのホームページから入手できます。オープンソース ソフトウェアのユーザーとして, お客様は完全なソース コードを入手し, Apache ライセンスの条項に従って変更/配布する権利を有します。\n
+		\n
+		特記事項: この契約は, DroidGit Git サーバー アプリケーションのユーザーにのみ適用されます。変更および解釈の権利は開発者に帰属します。\n
+		\n
+		DroidGit Git Server - いつでもどこでも Git リポジトリをホスト\n
+		\n
+		開発者: Olsc\n
+		\n
+		バージョン: DroidGit エンドユーザー ライセンス契約 (EULA)\n
+		\n
+		2026年1月
+	</string>
+    <string name="updates">バージョンアップデート</string>
+    <string name="about">詳細</string>
+    <string name="settings">設定</string>
+
+    <string name="activity_settings_label">設定</string>
+    <string name="activity_repository_details_label">リポジトリ詳細</string>
+    <string name="activity_setup_label">リポジトリ</string>
+
+    <string name="notification_channel_name">Git HTTP サービス</string>
+    <string name="notification_ticker">Git HTTP サーバーが起動しました！</string>
+    <string name="notification_title">Git HTTP サーバーが実行中です</string>
+    <string name="notification_action_restart">再起動</string>
+    <string name="miui_dialog_title">MIUI バックグラウンド制限</string>
+    <string name="miui_dialog_message">MIUI システムを使用していることが検出されました。Git サーバーを継続的に実行し続けるには、以下の設定を行うことをお勧めします：\n\n1. 「自動起動」権限を有効にする\n2. 「バッテリーセーバー」の制限を無効にする\n3. 最近のタスクでアプリを「ロック」する\n\n今すぐ設定に移動しますか？</string>
+    <string name="miui_dialog_button_settings">設定に移動</string>
+    <string name="miui_dialog_button_later">後で</string>
+    <string name="miui_dialog_button_dont_show">二度と表示しない</string>
+    <string name="unknown_ssid">不明</string>
+    <string name="enable_all_files_access_toast">Git リポジトリを作成するには、すべてのファイルへのアクセスを有効にしてください</string>
+    <string name="opening_app_toast">%1$s を開いています...</string>
+    <string name="app_not_installed_toast">%1$s はインストールされていません。</string>
+    <string name="error_opening_app_toast">%1$s の起動中にエラーが発生しました</string>
+    <string name="imported_repositories_toast">%1$d 個のリポジトリを自動的にインポートしました。</string>
+    <string name="error_field_required">必須項目です</string>
+
+    <string name="splash_subtitle">Android 用 Git サーバー</string>
+    <string name="wifi_searching">検索中...</string>
+    <string name="server_log_ready">サーバーログ：準備完了...</string>
+    <string name="about_support_title">情報と寄付</string>
+    <string name="donate_description">あなたのサポートがこのプロジェクトを支えています。DroidGit をご利用いただきありがとうございます。</string>
+    <string name="donate_current_maintainer_title">開発者</string>
+    <string name="donate_subscription_description">継続的な開発とサーバーのメンテナンスをサポートしてください。</string>
+    <string name="donate_button_subscription">サブスクリプションでサポート</string>
+
+    <string name="donate_button_paypal">PayPal で寄付</string>
+    <string name="donate_button_alipay">AliPay</string>
+    <string name="donate_button_wechat">WeChat Pay</string>
+
+    <string name="about_opensource_title">オープンソース</string>
+    <string name="about_current_project_label">プロジェクトホームページ:</string>
+    <string name="menu_settings">設定</string>
+    <string name="menu_repositories">リポジトリ</string>
+    <string name="menu_scan">リポジトリのスキャン</string>
+
+    <string name="server_info_format">ウェブコンソール: http://%1$s:%2$s</string>
+    <string name="menu_skip">スキップ</string>
+    <string name="dialog_delete_repository_title">削除を確認しますか？</string>
+    <string name="dialog_delete_repository_message">%1$s を削除しますか？これにより、DroidGit 内の記録が削除されます。リポジトリを削除すると、実際のローカル リポジトリ ファイルも完全に削除されます。</string>
+
+
+    <string name="language_settings">言語設定</string>
+    <string name="choose_language">言語を選択</string>
+    <string name="language_default">システムデフォルト</string>
+    <string name="language_en">英語 (English)</string>
+    <string name="language_zh">中国語 (Chinese)</string>
+    <string name="language_ja">日本語</string>
+    <string name="language_ko">韓国語 (Korean)</string>
+    <string name="language_ru">ロシア語 (Russian)</string>
+    <string name="language_fr">フランス語 (French)</string>
+    <string name="language_es">スペイン語 (Spanish)</string>
+
+    <string name="error_opening_paypal">PayPal を開けません</string>
+    <string name="server_running_no_network">サーバー実行中 - ネットワークなし</string>
+    <string name="network_ready_format">ネットワーク準備完了: %s</string>
+    <string name="server_stopped">サーバー停止中</string>
+    <string name="server_stopped_no_network">サーバー停止中 - ネットワークなし</string>
+
+    <string name="error_loading_repositories">リポジトリの読み込み中にエラーが発生しました</string>
+    <string name="error_deleting_repository">リポジトリの削除中にエラーが発生しました</string>
+    <string name="error_updating_repository">リポジトリの更新中にエラーが発生しました</string>
+    <string name="save">保存</string>
+    <string name="repository_updated">リポジトリを更新しました</string>
+    <string name="repository_created">リポジトリを作成しました</string>
+    <string name="error_occurred">エラーが発生しました: %1$s</string>
+</resources>

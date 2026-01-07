@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/spashScreenContainer"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg_screen_gradient"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:fitsSystemWindows="true">
+
+    <ImageView
+        android:id="@+id/splashScreenImageView"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:src="@drawable/ic_app_icon"
+        android:layout_marginBottom="32dp"/>
+
+    <TextView
+        android:id="@+id/splashScreenTitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name"
+        android:textColor="@color/scifi_cyan"
+        android:textSize="42sp"
+        android:textStyle="bold"
+        android:letterSpacing="0.05"/>
+
+    <TextView
+        android:id="@+id/splashScreenSubtitleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="@string/splash_subtitle"
+        android:textColor="@color/text_secondary"
+        android:textSize="16sp"
+        android:letterSpacing="0.1"/>
+
+
+    <Button
+        android:id="@+id/splashScreenDonateButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/blue_btn_selector"
+        android:text="@string/about_support_title"
+        android:textColor="@color/text_primary"
+        android:layout_marginBottom="32dp"
+        android:visibility="gone"/>
+
+</LinearLayout>

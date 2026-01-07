@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="black_background">#000000</color>
+    <color name="black_surface">#121212</color>
+    <color name="black_card">#1C1C1E</color>
+    
+    <color name="scifi_cyan">#0A84FF</color>
+    <color name="scifi_cyan_dark">#0060DF</color>
+    <color name="scifi_accent">#30D158</color>
+    
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#8E8E93</color>
+    <color name="text_tertiary">#48484A</color>
+    
+    <color name="divider_color">#2C2C2E</color>
+    <color name="glass_overlay">#1AFFFFFF</color>
+    <color name="ripple_color">#33FFFFFF</color>
+    
+
+    <color name="colorPrimary">@color/scifi_cyan</color>
+    <color name="colorPrimaryVariant">@color/scifi_cyan_dark</color>
+    <color name="colorOnPrimary">#FFFFFF</color>
+    <color name="colorSecondary">@color/scifi_accent</color>
+    <color name="colorOnSecondary">#FFFFFF</color>
+    <color name="colorSurface">@color/black_card</color>
+    <color name="colorOnSurface">@color/text_primary</color>
+    <color name="colorError">#FF453A</color>
+</resources>

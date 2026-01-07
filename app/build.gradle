@@ -1,0 +1,53 @@
+apply plugin: 'com.android.application'
+
+android {
+    namespace 'com.olsc.droidgit'
+    compileSdk 36
+
+    defaultConfig {
+        applicationId "com.olsc.droidgit"
+        minSdkVersion 26
+        targetSdk 36
+        versionCode VERSION_CODE.toInteger()
+        versionName VERSION_NAME
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_17
+        targetCompatibility JavaVersion.VERSION_17
+        coreLibraryDesugaringEnabled true
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/DEPENDENCIES'
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+    compileSdkMinor 1
+}
+
+dependencies {
+    coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.1.5'
+    implementation 'androidx.appcompat:appcompat:1.7.1'
+    implementation 'com.google.android.material:material:1.13.0'
+    implementation 'com.j256.ormlite:ormlite-android:6.1'
+    implementation 'org.eclipse.jgit:org.eclipse.jgit:7.5.0.202512021534-r'
+    implementation 'commons-validator:commons-validator:1.10.1'
+    implementation 'org.nanohttpd:nanohttpd:2.3.1'
+}
+
+configurations.all {
+    exclude group: "commons-logging", module: "commons-logging"
+}

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    
+    <PreferenceCategory android:title="@string/language_settings">
+        <ListPreference
+            android:key="language"
+            android:title="@string/choose_language"
+            android:entries="@array/language_entries"
+            android:entryValues="@array/language_values"
+            android:defaultValue="default" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/general_settings">
+        
+		<CheckBoxPreference 
+		    android:key="show_notification"
+		    android:title="@string/statusbar_notification"
+		    android:summaryOn="@string/click_to_disable"
+		    android:summaryOff="@string/click_to_enable"
+		    android:defaultValue="true"/>
+		
+		<EditTextPreference 
+            android:key="git_repositories_dir"
+            android:title="@string/settings_git_repositories_directory"
+            android:defaultValue="/sdcard/DroidGit/repositories"/>
+		
+    </PreferenceCategory>
+    
+    <PreferenceCategory android:title="@string/server_settings">
+        
+        <EditTextPreference 
+            android:key="http_port"
+            android:title="@string/settings_http_server_port"
+            android:defaultValue="8080"/>
+        
+
+		
+		<CheckBoxPreference 
+		    android:key="auto_start_on_wifi"
+		    android:title="@string/autostart"
+		    android:summaryOn="@string/autostart_summary_on"
+		    android:summaryOff="@string/autostart_summary_off"
+		    android:defaultValue="false"/>
+        
+        <CheckBoxPreference 
+		    android:key="auto_stop_on_wifi_off"
+		    android:title="@string/autostop"
+		    android:summaryOn="@string/autostop_summary_on"
+		    android:summaryOff="@string/autostop_summary_off"
+		    android:defaultValue="false"/>
+		
+    </PreferenceCategory>
+</PreferenceScreen>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DroidGit</string>
+    <string name="add_user_fullname">全名</string>
+    <string name="add_user_email">电子邮箱</string>
+    <string name="add_user_username">用户名</string>
+    <string name="add_user_password">密码</string>
+    <string name="add_user_publickey">公钥</string>
+    <string name="add_repository_name">名称</string>
+    <string name="add_repository_mapping">映射</string>
+    <string name="add_repository_description">描述</string>
+    <string name="add_user_title">添加新用户</string>
+    <string name="add_user_activate">激活用户</string>
+    <string name="add_repository_title">添加代码库</string>
+    <string name="click_to_disable">点击禁用</string>
+    <string name="click_to_enable">点击启用</string>
+    <string name="settings_git_repositories_directory">Git 代码库目录</string>
+    <string name="settings_http_server_port">HTTP 服务器端口</string>
+
+
+	<string name="repositories_no_repositories_label">没有代码库</string>
+	<string name="users_no_users_label">没有用户</string>
+	<string name="home_start">开始</string>
+	<string name="home_stop">停止</string>
+	<string name="statusbar_notification">状态栏通知</string>
+	<string name="autostart">自动启动</string>
+	<string name="autostart_summary_on">WiFi 开启时自动启动</string>
+	<string name="autostart_summary_off">WiFi 开启时自动启动</string>
+	<string name="autostop">自动停止</string>
+	<string name="autostop_summary_on">WiFi 关闭时自动停止</string>
+	<string name="autostop_summary_off">WiFi 关闭时自动停止</string>
+
+	<string name="wifi_connected_to">WiFi 已连接</string>
+	<string name="network_ready">网络就绪</string>
+	<string name="wifi_not_connected">WiFi 未连接</string>
+	<string name="no_repositories">没有代码库</string>
+	<string name="add_permission">添加权限</string>
+	<string name="no_permissions">没有权限</string>
+	<string name="permissions">权限</string>
+	<string name="edit">编辑</string>
+	<string name="activate">激活</string>
+	<string name="deactivate">停用</string>
+	<string name="delete">删除</string>
+	<string name="repository_details">代码库详情</string>
+	<string name="no_users">没有用户</string>
+	<string name="add_repository_activate">激活代码库</string>
+	<string name="server_settings">服务器设置</string>
+	<string name="general_settings">常规设置</string>
+	<string name="eula">
+		DroidGit 最终用户许可协议（EULA）\n
+		\n
+		DroidGit 最终用户许可协议（EULA）是您与 DroidGit 软件开发方之间的法律协议。请您务必审慎阅读、充分理解各条款内容，特别是免除或者限制开发者责任的条款、对用户权利进行限制的条款等。\n
+		\n
+		本协议适用于 DroidGit Git 服务器应用用户（下称“用户”），旨在说明软件使用条款和条件。\n
+		\n
+		请用户仔细阅读以下全部内容。如用户不同意本协议的任意内容，请不要使用 DroidGit 软件及服务。如用户通过安装、复制或以其他方式使用本软件，即表示用户与 DroidGit 开发者（Olsc）已达成协议，自愿接受本协议的所有内容。\n
+		\n
+		本软件为开源 Git 服务器应用，基于 Apache License, Version 2.0 许可证发布，由 Olsc 开发并维护。\n
+		\n
+		尊重用户个人隐私是开发者的一项基本原则。\n
+		\n
+		一、权限说明\n
+		DroidGit 作为开源 Git 服务器应用，需要获取以下权限以提供核心功能，对于相关权限的具体用途在此做声明：\n
+		\n
+		1. 存储权限：应用需要“读取存储权限”和“写入存储权限”来创建、读取和写入 Git 仓库文件，这是核心功能所必需的。\n
+		\n
+		2. 网络权限：应用需要“网络连接”的权限来启动 HTTP 服务器，允许其他设备通过网络访问您的 Git 仓库，其中包括“完全的网络访问权限”、“查看 WLAN 连接”、“更改网络连接性”等有关网络或 WIFI 的权限，用于监控网络状态以便自动控制服务。\n
+		\n
+		3. 位置权限：在 Android 8.1+ 系统中，需要获取位置权限来获取当前 WiFi 名称（SSID），仅用于获取网络信息，我们不会收集您的地理位置数据。\n
+		\n
+		4. 前台服务与唤醒锁权限：用于确保 Git 服务器在屏幕关闭或应用在后台运行时保持活动状态，防止连接中断。\n
+		\n
+		5. 通知权限：用于在状态栏显示服务状态，防止后台服务被系统杀死。\n
+		\n
+		6. 查询包权限：在捐赠页面用于检测其他所需软件是否已安装。\n
+		\n
+		7. 开机自启权限：用于在设备启动时自动启动 Git 服务器（可选功能）。\n
+		\n
+		8. 自动停止权限：用于在 WiFi 断开时自动停止服务器（可选功能）。\n
+		\n
+		本应用尊重用户隐私，所有数据均存储在您的本地设备上。作为开源软件，您可以自由使用、研究、修改和分发本软件，但除了必要的网络服务（允许其他设备通过网络访问您创建的 Git 仓库）外，我们不会上传任何个人隐私数据。\n
+		\n
+		二、免责条款\n
+		严禁以下行为：\n
+		\n
+		1. 未经授权而进行安装包解包、进行反向工程、修改应用内容、以个人名义对外进行转发、额外收费等等规避版权保护的行为。\n
+		\n
+		2. 不得使用 DroidGit 进行任何非法活动或违反当地法律法规的行为，包括但不限于侵犯他人知识产权、传播非法内容等。\n
+		\n
+		3. 用户应当合理使用 Git 服务器功能，不得滥用服务进行恶意攻击、大量占用网络带宽或其他影响他人正常使用的行为。\n
+		\n
+		4. DroidGit 作为 Git 服务器应用，用户有责任确保所托管的代码仓库内容合法合规，开发者不对用户托管的内容承担责任。\n
+		\n
+		5. 用户应当妥善保管自己的账户 and 密码信息，因用户自身保管不善导致的安全问题，开发者不承担责任。\n
+		\n
+		6. 由于 DroidGit 允许网络访问，用户有责任确保网络安全配置正确，避免因不当配置导致的安全风险。\n
+		\n
+		7. 除上述规定属免责外，下列情况时开发者无需承担任何责任：\n
+		\n
+		（1）任何由于黑客攻击、计算机病毒侵入或发作、电信部门技术调整导致的影响、因政府管制而造成的暂时性关闭、由于第三方原因（包括不可抗力，例如国际出口的主干链路及国际出口电信提供商一方出现故障、火灾、水灾、雷击、地震、洪水、台风、龙卷风、火山爆发、瘟疫和传染病流行、罢工、战争或暴力行为或类似事件）及其他非因开发者本人过错而造成的用户个人资料恶意收集、泄露、丢失、被盗用或被窜改等，以及由此给用户和第三方造成的任何损失，开发者均无需承担任何责任。\n
+		\n
+		（2）您在使用 DroidGit 或相关服务时，须遵守所在国家或地区的法律法规以及国际通用的互联网行为准则。您不得利用 DroidGit 或相关服务从事以下任何违反和平、尊重、平等原则的活动，包括但不限于：\n
+		\n
+		（a）宣扬仇恨言论、歧视、种族主义、暴力或煽动对他人的伤害；\n
+		\n
+		（b）发布或传播儿童色情、恐怖主义内容或任何形式的非法骚扰；\n
+		\n
+		（c）侵犯他人隐私权、名誉权或知识产权；\n
+		\n
+		（d）恶意破坏网络安全、传播恶意软件或进行网络攻击；\n
+		\n
+		（e）从事任何违反国际人权公约或公认道德准则的活动。\n
+		\n
+		三、限制条款\n
+		DroidGit 作为基于 Apache License, Version 2.0 发布的开源 Git 服务器应用，您享有在 Apache 许可证条款下使用、修改和分发本软件的自由。\n
+		\n
+		您在使用 DroidGit 服务过程中应当遵守当地相关的法律法规，并尊重当地的道德和风俗习惯。如果您的行为违反了当地法律法规或道德风俗，您应当为此独立承担责任。\n
+		\n
+		作为开源软件用户，您有权获取本软件的源代码，并可以根据 Apache License, Version 2.0 许可证的条款自由使用、修改和分发本软件。\n
+		\n
+		您应避免因使用 DroidGit 服务而使开发者卷入政治 and 公共事件，否则开发者有权暂停或终止对您的服务。\n
+		\n
+		四、政策变更\n
+		您需理解，只有在您确认并同意变更后的《DroidGit 最终用户许可协议（EULA）》，我们才会依据变更后的协议条款提供服务；您有权拒绝同意变更后的协议，但请您知悉，一旦您拒绝同意变更后的协议，可能导致您不能或不能继续完整使用 DroidGit 的相关服务 and 功能。\n
+		\n
+		本协议内容如发生任何变更，我们会在变更生效前通知您并重新获得您的同意，如您不同意变更后的内容，您可以选择停止使用我们的服务；如您仍然继续使用我们服务的，即表示同意受经修订的本《DroidGit 最终用户许可协议（EULA）》的约束。\n
+		\n
+		五、知识产权\n
+		DroidGit 是基于 Apache License, Version 2.0 发布的开源 Git 服务器应用，由 Olsc 维护。本软件根据 Apache 许可证发布，您有权在遵守许可证条款的前提下自由使用、复制、分发和修改本软件。\n
+		\n
+		Apache License, Version 2.0 许可证的主要内容包括：\n
+		\n
+		1. 您有权出于任何目的使用该软件；\n
+		2. 您有权研究和修改该软件的源代码以满足您的需求；\n
+		3. 您有权分发该软件及其副本；\n
+		4. 您有权分发该软件的修改版本。\n
+		\n
+		根据 Apache 许可证要求，您必须在所有分发副本中包含原始版权声明和免责声明。完整的许可证条款请参见项目根目录的 LICENSE 文件。\n
+		\n
+		六、联系我们\n
+		如您有关于网络信息安全的投诉和举报，或您对本《DroidGit 最终用户许可协议（EULA）》关于您的信息的相关事宜有任何问题、意见或建议，以及有关本声明或就《DroidGit 最终用户许可协议（EULA）》的问题请与我们联系。\n
+		\n
+		本项目为基于 Apache License, Version 2.0 许可证发布的开源项目，您可通过项目主页获取源代码及更多联系信息。作为开源软件用户，您有权获取本软件的完整源代码，并可根据 Apache 许可证条款进行修改及分发。\n
+		\n
+		特别提示：本协议仅适用于使用 DroidGit Git 服务器应用的用户，本协议的修改权和解释权均属于开发者所有。\n
+		\n
+		DroidGit Git 服务器 - 让您随时随地托管 Git 仓库\n
+		\n
+		开发者：Olsc\n
+		\n
+		版本：《DroidGit 最终用户许可协议（EULA）》\n
+		\n
+		二〇二六年一月
+	</string>
+    <string name="updates">版本更新</string>
+    <string name="about">关于</string>
+    <string name="settings">设置</string>
+
+    <string name="activity_settings_label">设置</string>
+    <string name="activity_repository_details_label">代码库详情</string>
+    <string name="activity_setup_label">代码库</string>
+
+    <string name="notification_channel_name">Git HTTP 服务</string>
+    <string name="notification_ticker">Git HTTP 服务器已启动！</string>
+    <string name="notification_title">Git HTTP 服务器正在运行</string>
+    <string name="notification_action_restart">重启</string>
+    <string name="miui_dialog_title">MIUI 后台限制</string>
+    <string name="miui_dialog_message">检测到您使用的是 MIUI 系统。为了让 Git 服务器持续运行，建议进行以下设置：\n\n1. 启用\"自启动\"权限\n2. 关闭\"省电策略\"限制\n3. 在最近任务中\"锁定\"应用\n\n是否现在前往设置？</string>
+    <string name="miui_dialog_button_settings">前往设置</string>
+    <string name="miui_dialog_button_later">稍后</string>
+    <string name="miui_dialog_button_dont_show">不再提示</string>
+    <string name="unknown_ssid">未知</string>
+    <string name="enable_all_files_access_toast">请启用\“所有文件访问权限\”以创建 Git 代码库</string>
+    <string name="opening_app_toast">正在打开 %1$s...</string>
+    <string name="app_not_installed_toast">未安装 %1$s。</string>
+    <string name="error_opening_app_toast">打开 %1$s 时出错</string>
+    <string name="imported_repositories_toast">已自动导入 %1$d 个代码库。</string>
+    <string name="error_field_required">此项必填</string>
+
+    <string name="splash_subtitle">Android 上的 Git 服务器</string>
+    <string name="wifi_searching">正在搜索...</string>
+    <string name="server_log_ready">服务器日志：就绪...</string>
+    <string name="about_support_title">关于和捐赠</string>
+    <string name="donate_description">您的支持让这个项目得以延续。感谢您使用 DroidGit。</string>
+    <string name="donate_current_maintainer_title">开发者</string>
+    <string name="donate_subscription_description">支持项目的持续更新、核心功能优化以及服务器维护。</string>
+    <string name="donate_button_subscription">订阅支持</string>
+
+    <string name="donate_button_paypal">通过 PayPal 捐赠</string>
+    <string name="donate_button_alipay">通过支付宝支持</string>
+    <string name="donate_button_wechat">通过微信支付支持</string>
+
+    <string name="about_opensource_title">开源信息</string>
+    <string name="about_current_project_label">项目主页:</string>
+    <string name="menu_settings">设置</string>
+    <string name="menu_repositories">仓库</string>
+    <string name="menu_scan">重新扫描仓库</string>
+
+    <string name="server_info_format">网页控制台: http://%1$s:%2$s</string>
+    <string name="menu_skip">跳过</string>
+    <string name="dialog_delete_repository_title">确认删除？</string>
+    <string name="dialog_delete_repository_message">确认删除 %1$s 吗？这将移除其在 DroidGit 中的记录。删除代码库时，本地真实的物理库文件也将被永久删除。</string>
+
+    <string name="language_settings">语言设置</string>
+    <string name="choose_language">选择语言</string>
+    <string name="language_default">系统默认</string>
+    <string name="language_en">英语 (English)</string>
+    <string name="language_zh">中文</string>
+    <string name="language_ja">日语 (Japanese)</string>
+    <string name="language_ko">韩语 (Korean)</string>
+    <string name="language_ru">俄语 (Russian)</string>
+    <string name="language_fr">法语 (French)</string>
+    <string name="language_es">西班牙语 (Spanish)</string>
+
+    <string name="error_opening_paypal">无法打开 PayPal</string>
+    <string name="server_running_no_network">服务运行中 - 无网络</string>
+    <string name="network_ready_format">网络就绪: %s</string>
+    <string name="server_stopped">服务器已停止</string>
+    <string name="server_stopped_no_network">服务器已停止 - 无网络</string>
+
+    <string name="error_loading_repositories">加载代码库出错</string>
+    <string name="error_deleting_repository">删除代码库出错</string>
+    <string name="error_updating_repository">更新代码库出错</string>
+    <string name="save">保存</string>
+    <string name="repository_updated">代码库已更新</string>
+    <string name="repository_created">代码库已创建</string>
+    <string name="error_occurred">发生错误: %1$s</string>
+</resources>

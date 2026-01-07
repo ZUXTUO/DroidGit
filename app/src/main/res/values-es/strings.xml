@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DroidGit</string>
+    <string name="add_user_fullname">Nombre completo</string>
+    <string name="add_user_email">Correo electrónico</string>
+    <string name="add_user_username">Nombre de usuario</string>
+    <string name="add_user_password">Contraseña</string>
+    <string name="add_user_publickey">Clave pública</string>
+    <string name="add_repository_name">Nombre</string>
+    <string name="add_repository_mapping">Mapeo</string>
+    <string name="add_repository_description">Descripción</string>
+    <string name="add_user_title">Añadir nuevo usuario</string>
+    <string name="add_user_activate">Activar usuario</string>
+    <string name="add_repository_title">Añadir repositorio</string>
+    <string name="click_to_disable">Click para desactivar</string>
+    <string name="click_to_enable">Click para activar</string>
+    <string name="settings_git_repositories_directory">Directorio de repositorios Git</string>
+    <string name="settings_http_server_port">Puerto del servidor HTTP</string>
+
+
+	<string name="repositories_no_repositories_label">Sin repositorios</string>
+	<string name="users_no_users_label">Sin usuarios</string>
+	<string name="home_start">Iniciar</string>
+	<string name="home_stop">Detener</string>
+	<string name="statusbar_notification">Notificación en la barra de estado</string>
+	<string name="autostart">Auto-inicio</string>
+	<string name="autostart_summary_on">Auto-inicio con WiFi activado</string>
+	<string name="autostart_summary_off">Auto-inicio con WiFi activado</string>
+	<string name="autostop">Auto-detención</string>
+	<string name="autostop_summary_on">Auto-detención con WiFi desactivado</string>
+	<string name="autostop_summary_off">Auto-detención con WiFi desactivado</string>
+
+	<string name="wifi_connected_to">WiFi conectado</string>
+	<string name="network_ready">Red lista</string>
+	<string name="wifi_not_connected">WiFi NO conectado</string>
+	<string name="no_repositories">Sin repositorios</string>
+	<string name="add_permission">Añadir permiso</string>
+	<string name="no_permissions">Sin permisos</string>
+	<string name="permissions">Permisos</string>
+	<string name="edit">Editar</string>
+	<string name="activate">Activar</string>
+	<string name="deactivate">Desactivar</string>
+	<string name="delete">Eliminar</string>
+	<string name="repository_details">Detalles del repositorio</string>
+	<string name="no_users">Sin usuarios</string>
+	<string name="add_repository_activate">Activar repositorio</string>
+	<string name="server_settings">Ajustes del servidor</string>
+	<string name="general_settings">Ajustes generales</string>
+	<string name="eula">
+		Acuerdo de licencia de usuario final (EULA) de DroidGit\n
+		\n
+		El Acuerdo de licencia de usuario final (EULA) de DroidGit es un acuerdo legal entre usted y los desarrolladores del software DroidGit. Por favor, lea y comprenda todos los términos cuidadosamente, especialmente los términos que eximen o limitan la responsabilidad del desarrollador y los términos que restringen los derechos del usuario.\n
+		\n
+		Este acuerdo se aplica a los usuarios (en adelante, \"Usuario\") de la aplicación de servidor Git DroidGit y tiene como objetivo especificar los términos y condiciones de uso del software.\n
+		\n
+		Por favor, lea atentamente el siguiente contenido. Si no está de acuerdo con alguna parte de este acuerdo, por favor no utilice el software ni los servicios de DroidGit. Al instalar, copiar o utilizar de cualquier otra forma este software, usted acepta el acuerdo con el desarrollador de DroidGit (Olsc) y acepta voluntariamente todos los términos de este acuerdo.\n
+		\n
+		Este software es una aplicación de servidor Git de código abierto, lanzada bajo la Licencia Apache, Versión 2.0, desarrollada y mantenida por Olsc.\n
+		\n
+		Respetar la privacidad del usuario es un principio fundamental de los desarrolladores.\n
+		\n
+		I. Explicación de los permisos\n
+		Como aplicación de servidor Git de código abierto, DroidGit requiere los siguientes permisos para proporcionar sus funciones principales. Los propósitos específicos de estos permisos se declaran aquí:\n
+		\n
+		1. Permiso de almacenamiento: La aplicación requiere permisos de \"Lectura de almacenamiento\" y \"Escritura en almacenamiento\" para crear, leer y escribir archivos de repositorios Git, lo cual es esencial para su funcionalidad principal.\n
+		\n
+		2. Permiso de red: La aplicación requiere el permiso de \"Conexión de red\" para iniciar el servidor HTTP, lo que permite que otros dispositivos accedan a sus repositorios Git a través de la red. Esto incluye permisos como \"Acceso completo a la red\", \"Ver conexiones WLAN\" y \"Cambiar conectividad de red\" para monitorear el estado de la red para el control automático del servicio.\n
+		\n
+		3. Permiso de ubicación: En sistemas Android 8.1+, se requiere el permiso de ubicación para obtener el nombre del WiFi actual (SSID), que se utiliza solo para recuperar información de la red. No recopilamos sus datos de ubicación geográfica.\n
+		\n
+		4. Permisos de servicio en primer plano y de bloqueo de suspensión: Se utilizan para garantizar que el servidor Git permanezca activo cuando la pantalla está apagada o la aplicación se ejecuta en segundo plano, evitando interrupciones en la conexión.\n
+		\n
+		5. Permiso de notificación: Se utiliza para mostrar el estado del servicio en la barra de estado, evitando que el sistema cierre el servicio en segundo plano.\n
+		\n
+		6. Permiso de consulta de paquetes: Se utiliza en la página de donación para detectar si hay otros programas necesarios instalados.\n
+		\n
+		7. Permiso de auto-inicio: Se utiliza para iniciar automáticamente el servidor Git cuando el dispositivo arranca (función opcional).\n
+		\n
+		8. Permiso de auto-detención: Se utiliza para detener automáticamente el servidor cuando el WiFi se desconecta (función opcional).\n
+		\n
+		Esta aplicación respeta la privacidad del usuario; todos los datos se almacenan en su dispositivo local. Como software de código abierto, usted es libre de usar, estudiar, modificar y distribuir este software. Excepto por los servicios de red necesarios (que permiten que otros dispositivos accedan a sus repositorios Git), no cargamos ningún dato de privacidad personal.\n
+		\n
+		II. Descargo de responsabilidad\n
+		Las siguientes actividades están estrictamente prohibidas:\n
+		\n
+		1. Desempaquetado no autorizado del paquete de instalación, ingeniería inversa, modificación del contenido de la aplicación, reenvío a título personal o cobro adicional para eludir la protección de derechos de autor.\n
+		\n
+		2. Uso de DroidGit para cualquier actividad ilegal o violación de las leyes y normas locales, incluyendo pero no limitado a la infracción de los derechos de propiedad intelectual de otros o la difusión de contenido ilegal.\n
+		\n
+		3. Los usuarios deben utilizar las funciones del servidor Git de forma razonable y no deben abusar del servicio para ataques malintencionados, consumo de gran volumen de ancho de banda de red u otras acciones que afecten el uso normal de otros.\n
+		\n
+		4. Dado que DroidGit es una aplicación de servidor Git, los usuarios son responsables de garantizar que el contenido de los repositorios de código alojados sea legal y conforme a las normas. Los desarrolladores no son responsables del contenido alojado por los usuarios.\n
+		\n
+		5. Los usuarios deben proteger adecuadamente su información de cuenta y contraseña. Los desarrolladores no son responsables de los problemas de seguridad causados por una conservación inadecuada por parte de los usuarios.\n
+		\n
+		6. Dado que DroidGit permite el acceso a la red, los usuarios son responsables de garantizar las configuraciones correctas de seguridad de red para evitar riesgos causados por ajustes inapropiados.\n
+		\n
+		7. Salvo que se disponga lo contrario, los desarrolladores no son responsables de lo siguiente:\n
+		\n
+		(1) Cualquier impacto causado por ataques de hackers, virus informáticos, ajustes técnicos por parte de los departamentos de telecomunicaciones, cierres temporales debido al control gubernamental o causas de terceros (incluyendo causas de fuerza mayor como fallos en los enlaces troncales internacionales, incendios, inundaciones, rayos, terremotos, tifones, erupciones volcánicas, pestes, huelgas, guerras, etc.) y cualquier otra recopilación malintencionada, filtración, pérdida, robo o alteración de datos personales del usuario que no sea causada por culpa del propio desarrollador, así como cualquier pérdida resultante para el usuario y terceros.\n
+		\n
+		(2) Usted debe cumplir con las leyes y normas locales y con los estándares de conducta en Internet aceptados internacionalmente al utilizar DroidGit. No debe utilizar DroidGit para ninguna actividad que viole los principios de paz, respeto e igualdad, incluyendo pero no limitado a:\n
+		\n
+		(a) Promover el discurso de odio, la discriminación, el racismo o la violencia;\n
+		(b) Distribuir material de abuso sexual infantil (CSAM), contenido terrorista o acoso ilegal;\n
+		(c) Infringir la privacidad, la reputación o los derechos de propiedad intelectual de otros;\n
+		(d) Comprometer malintencionadamente la seguridad de la red, propagar malware o realizar ciberataques;\n
+		(e) Participar en cualquier actividad que viole las convenciones internacionales de derechos humanos.\n
+		\n
+		III. Términos de restricción\n
+		Como aplicación de servidor Git de código abierto lanzada bajo la Licencia Apache, Versión 2.0, usted disfruta de la libertad de usar, modificar y distribuir el software bajo los términos de la Licencia Apache.\n
+		\n
+		Usted debe cumplir con las leyes y normas locales y respetar la moral y las costumbres locales mientras utiliza los servicios de DroidGit. Si su comportamiento viola las leyes o costumbres locales, usted será responsable de forma independiente.\n
+		\n
+		Como usuario de software de código abierto, tiene derecho a obtener el código fuente de este software y puede usar, modificar y distribuir libremente este software según los términos de la Licencia Apache, Versión 2.0.\n
+		\n
+		Debe evitar involucrar a los desarrolladores en eventos políticos y públicos mediante el uso de los servicios de DroidGit; de lo contrario, los desarrolladores tienen el derecho de suspender o terminar los servicios para usted.\n
+		\n
+		IV. Cambios en la política\n
+		Debe entender que solo proporcionaremos servicios basados en los términos modificados del Acuerdo de licencia de usuario final (EULA) de DroidGit después de que los confirme y acepte. Usted tiene el derecho de rechazar el acuerdo modificado, pero tenga en cuenta que una vez que lo rechace, es posible que no pueda continuar utilizando los servicios y funciones de DroidGit.\n
+		\n
+		Si se produce algún cambio, se lo notificaremos y obtendremos nuevamente su consentimiento antes de que los cambios entren en vigor. Si no está de acuerdo con los cambios, puede optar por dejar de usar nuestros servicios; si continúa usándolos, indica su acuerdo a estar sujeto al EULA revisado.\n
+		\n
+		V. Propiedad Intelectual\n
+		DroidGit es una aplicación de servidor Git de código abierto lanzada bajo la Licencia Apache, Versión 2.0, desarrollada y mantenida por Olsc. Lanzada bajo la licencia Apache, tiene derecho a usar, copiar, distribuir y modificar este software siempre que cumpla con los términos de la licencia.\n
+		\n
+		Los contenidos principales de la Licencia Apache, Versión 2.0 incluyen:\n
+		\n
+		1. Tiene derecho a usar el programa para cualquier propósito;\n
+		2. Tiene derecho a estudiar y modificar el código fuente del programa para adaptarlo a sus necesidades;\n
+		3. Tiene derecho a distribuir el programa y sus copias;\n
+		4. Tiene derecho a distribuir versiones modificadas del programa.\n
+		\n
+		De acuerdo con los requisitos de la Licencia Apache, debe incluir el aviso de derechos de autor original y el descargo de responsabilidad en todas las distribuciones. Consulte el archivo LICENSE en la raíz del proyecto para ver los términos completos de la licencia.\n
+		\n
+		VI. Contáctenos\n
+		Si tiene quejas o informes sobre seguridad de la información de red, o cualquier pregunta, comentario o sugerencia con respecto a este EULA y su información, o preguntas sobre esta declaración, por favor contáctenos.\n
+		\n
+		Este proyecto es un proyecto de código abierto basado en la licencia Apache License, Version 2.0. Puede obtener el código fuente y más información de contacto a través de la página principal del proyecto. Como usuario de software de código abierto, tiene derecho a obtener el código fuente completo y modificarlo/distribuirlo según los términos de la Licencia Apache.\n
+		\n
+		Nota especial: Este acuerdo solo se aplica a los usuarios de la aplicación de servidor Git DroidGit. Los derechos de modificación e interpretación pertenecen a los desarrolladores.\n
+		\n
+		Servidor Git DroidGit - Aloje repositorios Git en cualquier momento y en cualquier lugar\n
+		\n
+		Desarrollador: Olsc\n
+		\n
+		Versión: Acuerdo de licencia de usuario final (EULA) de DroidGit\n
+		\n
+		Enero de 2026
+	</string>
+    <string name="updates">Actualizaciones de versión</string>
+    <string name="about">Acerca de</string>
+    <string name="settings">Ajustes</string>
+
+    <string name="activity_settings_label">Ajustes</string>
+    <string name="activity_repository_details_label">Detalles del repositorio</string>
+    <string name="activity_setup_label">Repositorios</string>
+
+    <string name="notification_channel_name">Servicio Git HTTP</string>
+    <string name="notification_ticker">¡Servidor Git HTTP iniciado!</string>
+    <string name="notification_title">El servidor Git HTTP se está ejecutando</string>
+    <string name="notification_action_restart">Reiniciar</string>
+    <string name="miui_dialog_title">Restricciones de segundo plano de MIUI</string>
+    <string name="miui_dialog_message">Se ha detectado que utilizas el sistema MIUI. Para que el servidor Git funcione de forma continua, se recomienda realizar los siguientes ajustes:
+
+1. Activar el permiso de \"Auto-inicio\"
+2. Desactivar las restricciones de \"Ahorro de batería\"
+3. \"Bloquear\" la aplicación en las tareas recientes
+
+¿Ir a los ajustes ahora?</string>
+    <string name="miui_dialog_button_settings">Ir a Ajustes</string>
+    <string name="miui_dialog_button_later">Más tarde</string>
+    <string name="miui_dialog_button_dont_show">No mostrar de nuevo</string>
+    <string name="unknown_ssid">desconocido</string>
+    <string name="enable_all_files_access_toast">Por favor, activa el acceso a todos los archivos para crear repositorios Git</string>
+    <string name="opening_app_toast">Abriendo %1$s...</string>
+    <string name="app_not_installed_toast">%1$s no está instalado.</string>
+    <string name="error_opening_app_toast">Error al abrir %1$s</string>
+    <string name="imported_repositories_toast">Se han importado automáticamente %1$d repositorios.</string>
+    <string name="error_field_required">Campo requerido</string>
+
+    <string name="splash_subtitle">Servidor Git para Android</string>
+    <string name="wifi_searching">Buscando...</string>
+    <string name="server_log_ready">Registro del servidor: Listo...</string>
+    <string name="about_support_title">Acerca de y Donaciones</string>
+    <string name="donate_description">Tu apoyo mantiene vivo este proyecto. Gracias por usar DroidGit.</string>
+    <string name="donate_current_maintainer_title">Desarrollador</string>
+    <string name="donate_subscription_description">Apoya el desarrollo continuo y el mantenimiento del servidor.</string>
+    <string name="donate_button_subscription">Apoyar con suscripción</string>
+
+    <string name="donate_button_paypal">Donar con PayPal</string>
+    <string name="donate_button_alipay">AliPay</string>
+    <string name="donate_button_wechat">WeChat Pay</string>
+
+    <string name="about_opensource_title">Código Abierto</string>
+    <string name="about_current_project_label">Página del Proyecto:</string>
+    <string name="menu_settings">Ajustes</string>
+    <string name="menu_repositories">Repositorios</string>
+    <string name="menu_scan">Escanear repositorios</string>
+
+    <string name="server_info_format">Consola Web: http://%1$s:%2$s</string>
+    <string name="menu_skip">Omitir</string>
+    <string name="dialog_delete_repository_title">¿Confirmar eliminación?</string>
+    <string name="dialog_delete_repository_message">¿Confirmar eliminación de %1$s? Esto eliminará su registro en DroidGit. Al eliminar un repositorio, los archivos locales reales también se eliminarán permanentemente.</string>
+
+
+    <string name="language_settings">Ajustes de Idioma</string>
+    <string name="choose_language">Elegir Idioma</string>
+    <string name="language_default">Predeterminado del sistema</string>
+    <string name="language_en">Inglés (English)</string>
+    <string name="language_zh">Chino (Chinese)</string>
+    <string name="language_ja">Japonés (Japanese)</string>
+    <string name="language_ko">Coreano (Korean)</string>
+    <string name="language_ru">Ruso (Russian)</string>
+    <string name="language_fr">Francés (French)</string>
+    <string name="language_es">Español</string>
+
+    <string name="error_opening_paypal">No se pudo abrir PayPal</string>
+    <string name="server_running_no_network">Servidor en ejecución - Sin red</string>
+    <string name="network_ready_format">Red lista: %s</string>
+    <string name="server_stopped">Servidor detenido</string>
+    <string name="server_stopped_no_network">Servidor detenido - Sin red</string>
+    <string name="error_loading_repositories">Error al cargar los repositorios</string>
+    <string name="error_deleting_repository">Error al eliminar el repositorio</string>
+    <string name="error_updating_repository">Error al actualizar el repositorio</string>
+    <string name="save">Guardar</string>
+    <string name="repository_updated">Repositorio actualizado</string>
+    <string name="repository_created">Repositorio creado</string>
+    <string name="error_occurred">Ocurrió un error: %1$s</string>
+</resources>

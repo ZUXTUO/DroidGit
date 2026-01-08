@@ -39,7 +39,9 @@
 	<string name="permissions">Permessi</string>
 	<string name="edit">Modifica</string>
 	<string name="activate">Pubblico</string>
-	<string name="deactivate">Archivia</string>
+	<string name="deactivate">Privato</string>
+	<string name="archive_action">Archivia</string>
+	<string name="unarchive_action">Annulla archiviazione</string>
 	<string name="delete">Elimina</string>
 	<string name="repository_details">Dettagli repository</string>
 	<string name="no_users">Nessun utente</string>
@@ -225,6 +227,8 @@
     <string name="save">Salva</string>
     <string name="repository_updated">Repository aggiornato</string>
     <string name="repository_created">Repository creato</string>
+    <string name="repository_archived_toast">Repository archiviato</string>
+    <string name="repository_unarchived_toast">Archiviazione repository annullata</string>
     <string name="error_occurred">Si è verificato un errore: %1$s</string>
 
     <string-array name="language_entries">

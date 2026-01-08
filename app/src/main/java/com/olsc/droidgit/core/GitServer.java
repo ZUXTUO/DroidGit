@@ -71,8 +71,8 @@ public class GitServer extends NanoHTTPD {
             return listRepositories();
         } else if (uri.equals("/api/repositories/create") && method == Method.POST) {
             return createRepository(session);
-        } else if (uri.startsWith("/api/repositories/delete/") && method == Method.POST) {
-            return deleteRepository(uri);
+        } else if (uri.startsWith("/api/repositories/archive/") && method == Method.POST) {
+            return archiveRepository(uri);
         } else if (uri.equals("/api/repositories/update") && method == Method.POST) {
             return updateRepository(session);
         } else if (uri.startsWith("/browse/")) {
@@ -110,6 +110,10 @@ public class GitServer extends NanoHTTPD {
         }
 
         try {
+            GitRepository dbRepo = repositoryManager.getRepositoryByMapping(repoName);
+            if (dbRepo != null && dbRepo.isArchived()) {
+                return newFixedLengthResponse(Response.Status.FORBIDDEN, MIME_PLAINTEXT, "Repository is archived");
+            }
             org.eclipse.jgit.lib.Repository repo = repositoryManager.openJGitRepository(repoName);
             if (repo == null) {
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "Repository not found");
@@ -158,7 +162,17 @@ public class GitServer extends NanoHTTPD {
         Log.d(TAG, "Git upload-pack (fetch/clone) - repo: " + repoName);
 
         try {
-            org.eclipse.jgit.lib.Repository repo = repositoryManager.openJGitRepository(repoName);
+            org.eclipse.jgit.lib.Repository repo;
+            try {
+                GitRepository dbRepo = repositoryManager.getRepositoryByMapping(repoName);
+                if (dbRepo != null && dbRepo.isArchived()) {
+                    return newFixedLengthResponse(Response.Status.FORBIDDEN, MIME_PLAINTEXT, "Repository is archived");
+                }
+                repo = repositoryManager.openJGitRepository(repoName);
+            } catch (Exception e) {
+                repo = null;
+            }
+
             if (repo == null) {
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "Repository not found");
             }
@@ -202,7 +216,17 @@ public class GitServer extends NanoHTTPD {
         Log.d(TAG, "Git receive-pack (push) - repo: " + repoName);
 
         try {
-            org.eclipse.jgit.lib.Repository repo = repositoryManager.openJGitRepository(repoName);
+            org.eclipse.jgit.lib.Repository repo;
+            try {
+                GitRepository dbRepo = repositoryManager.getRepositoryByMapping(repoName);
+                if (dbRepo != null && dbRepo.isArchived()) {
+                    return newFixedLengthResponse(Response.Status.FORBIDDEN, MIME_PLAINTEXT, "Repository is archived");
+                }
+                repo = repositoryManager.openJGitRepository(repoName);
+            } catch (Exception e) {
+                repo = null;
+            }
+
             if (repo == null) {
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, MIME_PLAINTEXT, "Repository not found");
             }
@@ -498,11 +522,15 @@ public class GitServer extends NanoHTTPD {
                 "                create: 'Create',\n" +
                 "                cancel: 'Cancel',\n" +
                 "                delete: 'Delete',\n" +
+                "                archive: 'Archive',\n" +
+                "                confirmArchive: 'Are you sure you want to archive {name}? It will become read-only and cloning will be disabled.',\n"
+                +
                 "                confirmDelete: 'Are you sure you want to delete {name}? This will remove its record in DroidGit, and the actual local repository files will also be permanently deleted.',\n"
                 +
                 "                fillFields: 'Please fill required fields',\n" +
                 "                failCreate: 'Failed to create repository: ',\n" +
                 "                failDelete: 'Failed to delete repository',\n" +
+                "                failArchive: 'Failed to archive repository',\n" +
                 "                browse: 'Browse',\n" +
                 "                edit: 'Edit',\n" +
                 "                editTitle: 'Edit repository',\n" +
@@ -523,10 +551,13 @@ public class GitServer extends NanoHTTPD {
                 "                create: '确认创建',\n" +
                 "                cancel: '取消',\n" +
                 "                delete: '彻底删除',\n" +
+                "                archive: '归档',\n" +
+                "                confirmArchive: '确认归档 {name} 吗？归档后代码库将变为只读，且无法进行克隆/拉取操作。',\n" +
                 "                confirmDelete: '确认删除 {name} 吗？这将移除其在 DroidGit 中的记录。删除代码库时，本地真实的物理库文件也将被永久删除。',\n" +
                 "                fillFields: '请填写完整名称和路径',\n" +
                 "                failCreate: '创建失败: ',\n" +
                 "                failDelete: '删除失败',\n" +
+                "                failArchive: '归档失败',\n" +
                 "                browse: '在线浏览',\n" +
                 "                edit: '编辑',\n" +
                 "                editTitle: '编辑代码库',\n" +
@@ -557,6 +588,18 @@ public class GitServer extends NanoHTTPD {
                 "        document.getElementById('label-edit-description').innerText = t.description;\n" +
                 "        document.getElementById('btn-update').innerText = t.update;\n" +
                 "        document.getElementById('btn-edit-cancel').innerText = t.cancel;\n" +
+                "\n" +
+                "        function translateError(msg) {\n" +
+                "            if (lang !== 'zh' || !msg) return msg;\n" +
+                "            if (msg.includes('Repository mapping already exists')) return '映射路径已存在' + (msg.includes(':') ? ': ' + msg.split(':')[1] : '');\n"
+                +
+                "            if (msg.includes('Repository name cannot be empty')) return '项目名称不能为空';\n" +
+                "            if (msg.includes('Repository mapping cannot be empty')) return '映射路径不能为空';\n" +
+                "            if (msg.includes('Repository not found')) return '找不到该仓库';\n" +
+                "            if (msg.includes('Database error')) return '数据库操作错误';\n" +
+                "            if (msg.includes('Repository is archived')) return '代码库已归档，禁止操作';\n" +
+                "            return msg;\n" +
+                "        }\n" +
                 "        \n" +
                 "        function showCreateForm() { document.getElementById('create-form').style.display = 'block'; hideEditForm(); }\n"
                 +
@@ -613,10 +656,14 @@ public class GitServer extends NanoHTTPD {
                 +
                 "                    item.innerHTML = `\n" +
                 "                        <div>\n" +
-                "                            <div class=\"repo-name\">${repo.name || 'Unnamed'}</div>\n" +
+                "                            <div class=\"repo-name\">\n" +
+                "                                ${repo.name || 'Unnamed'}\n" +
+                "                                ${repo.archived ? '<span style=\"font-size:0.7em;background:#FF9800;color:black;padding:2px 6px;border-radius:4px;margin-left:8px;vertical-align:middle;\">ARCHIVED</span>' : ''}\n"
+                +
+                "                            </div>\n" +
                 "                            <div style=\"color:var(--text-dim);font-size:0.9em;margin-top:4px;margin-bottom:8px;\">${repo.description || ''}</div>\n"
                 +
-                "                            <div>\n" +
+                "                            <div style=\"${repo.archived ? 'display:none;' : ''}\">\n" +
                 "                                <span class=\"ssh-url\">http://${location.host}/${mappingUrl}</span>\n"
                 +
                 "                            </div>\n" +
@@ -626,7 +673,7 @@ public class GitServer extends NanoHTTPD {
                 +
                 "                            <button class=\"btn\" onclick=\"showEditForm('${repo.id}', '${safeName}', '${safeDesc}')\">${t.edit}</button>\n"
                 +
-                "                            <button class=\"btn btn-danger\" onclick=\"deleteRepo('${repo.id}', '${safeName}')\">${t.delete}</button>\n"
+                "                            ${!repo.archived ? `<button class=\"btn btn-danger\" onclick=\"archiveRepo('${repo.id}', '${safeName}')\">${t.archive}</button>` : ''}\n"
                 +
                 "                        </div>\n" +
                 "                    `;\n" +
@@ -667,7 +714,7 @@ public class GitServer extends NanoHTTPD {
                 "                loadRepos();\n" +
                 "            } else {\n" +
                 "                const msg = await resp.text();\n" +
-                "                alert(t.failCreate + msg);\n" +
+                "                alert(t.failCreate + translateError(msg));\n" +
                 "            }\n" +
                 "        }\n" +
                 "\n" +
@@ -686,17 +733,17 @@ public class GitServer extends NanoHTTPD {
                 "                loadRepos();\n" +
                 "            } else {\n" +
                 "                const msg = await resp.text();\n" +
-                "                alert(t.failUpdate + msg);\n" +
+                "                alert(t.failUpdate + translateError(msg));\n" +
                 "            }\n" +
                 "        }\n" +
                 "        \n" +
-                "        async function deleteRepo(id, name) {\n" +
-                "            if (!confirm(t.confirmDelete.replace('{name}', name))) return;\n" +
-                "            const resp = await fetch('/api/repositories/delete/' + id, { method: 'POST' });\n" +
+                "        async function archiveRepo(id, name) {\n" +
+                "            if (!confirm(t.confirmArchive.replace('{name}', name))) return;\n" +
+                "            const resp = await fetch('/api/repositories/archive/' + id, { method: 'POST' });\n" +
                 "            if (resp.ok) loadRepos();\n" +
                 "            else {\n" +
                 "                const errorText = await resp.text();\n" +
-                "                alert(t.failDelete + (errorText ? ': ' + errorText : ''));\n" +
+                "                alert(t.failArchive + (errorText ? ': ' + translateError(errorText) : ''));\n" +
                 "            }\n" +
                 "        }\n" +
                 "        \n" +
@@ -749,6 +796,7 @@ public class GitServer extends NanoHTTPD {
                         .append("\"name\":\"").append(escapeJson(r.getName())).append("\",")
                         .append("\"mapping\":\"").append(escapeJson(r.getMapping())).append("\",")
                         .append("\"description\":\"").append(escapeJson(r.getDescription())).append("\",")
+                        .append("\"archived\":").append(r.isArchived()).append(",")
                         .append("\"httpPort\":").append(httpPort)
                         .append("}");
 
@@ -805,13 +853,13 @@ public class GitServer extends NanoHTTPD {
         return s.replace("\\", "\\\\").replace("\"", "\\\"").replace("\n", "\\n").replace("\r", "");
     }
 
-    private Response deleteRepository(String uri) {
+    private Response archiveRepository(String uri) {
         try {
             String idStr = uri.substring(uri.lastIndexOf("/") + 1);
             int id = Integer.parseInt(idStr);
 
-            // 使用RepositoryManager删除仓库
-            repositoryManager.deleteRepository(id);
+            // 使用RepositoryManager归档仓库
+            repositoryManager.archiveRepository(id);
 
             return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_PLAINTEXT, "OK");
         } catch (RepositoryManager.RepositoryException e) {
@@ -881,6 +929,7 @@ public class GitServer extends NanoHTTPD {
     }
 
     private Response serveRepoBrowser(IHTTPSession session, String uri) {
+        boolean isZh = isChinese(session);
 
         Map<String, String> parms = session.getParms();
         boolean isRaw = "true".equals(parms.get("raw"));
@@ -903,7 +952,7 @@ public class GitServer extends NanoHTTPD {
             }
             if (repo == null) {
                 return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT,
-                        "Repository not found");
+                        isZh ? "找不到该仓库" : "Repository not found");
             }
 
             ObjectId commitId = repo.resolve(refName);
@@ -919,12 +968,12 @@ public class GitServer extends NanoHTTPD {
 
                 repo.close();
                 if (isEmptyRepo) {
-                    boolean isZh = isChinese(session);
                     String message = isZh ? "这是一个空的 Git 仓库，请先推送一些代码。"
                             : "This is an empty Git repository. Please push some code first.";
                     return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT, message);
                 } else {
-                    return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT, "Ref not found");
+                    return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT,
+                            isZh ? "引用未找到" : "Ref not found");
                 }
             }
 
@@ -942,7 +991,7 @@ public class GitServer extends NanoHTTPD {
                 } else {
                     repo.close();
                     return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_PLAINTEXT,
-                            "Path not found");
+                            isZh ? "路径未找到" : "Path not found");
                 }
             }
 
@@ -950,7 +999,8 @@ public class GitServer extends NanoHTTPD {
                 if ((targetMode.getBits() & FileMode.TYPE_FILE) == 0
                         && (targetMode.getBits() & FileMode.TYPE_GITLINK) == 0) {
                     repo.close();
-                    return newFixedLengthResponse(Response.Status.BAD_REQUEST, NanoHTTPD.MIME_PLAINTEXT, "Not a file");
+                    return newFixedLengthResponse(Response.Status.BAD_REQUEST, NanoHTTPD.MIME_PLAINTEXT,
+                            isZh ? "不是文件" : "Not a file");
                 }
 
                 org.eclipse.jgit.lib.ObjectLoader loader = repo.open(targetId);
@@ -959,7 +1009,6 @@ public class GitServer extends NanoHTTPD {
                 return newFixedLengthResponse(Response.Status.OK, mime, loader.openStream(), loader.getSize());
             }
 
-            boolean isZh = isChinese(session);
             String title = (isZh ? "浏览 - " : "Browse - ") + mapping;
 
             StringBuilder html = new StringBuilder();
@@ -1192,7 +1241,9 @@ public class GitServer extends NanoHTTPD {
             repo.close();
             return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_HTML, html.toString());
 
-        } catch (Exception e) {
+        } catch (
+
+        Exception e) {
             if (repo != null)
                 repo.close();
             e.printStackTrace();
@@ -1247,17 +1298,33 @@ public class GitServer extends NanoHTTPD {
                     // 忽略检查异常
                 }
 
-                String errorMessage = isZh ? "引用未找到" : "Ref not found";
-                if (isEmptyRepo) {
-                    errorMessage = isZh ? "这是一个空的 Git 仓库，请先推送一些代码。"
-                            : "This is an empty Git repository. Please push some code first.";
-                } else {
-                    errorMessage += ": " + refName;
-                }
+                String emptyTitle = isZh ? "空仓库" : "Empty Repository";
+                String emptyMessage = isZh ? "这是一个全新的 Git 仓库" : "This is a brand new Git repository";
 
-                html.append("<div class='card'>").append(errorMessage).append("</div></div></body></html>");
+                String httpUrl = "http://" + session.getHeaders().get("host") + "/"
+                        + (mapping.endsWith(".git") ? mapping : mapping + ".git");
+
+                html.append("<div class='card' style='text-align:center;padding:40px;'>");
+                html.append("<div style='font-size:3em;margin-bottom:20px;'>📂</div>");
+                html.append("<h2 style='margin-top:0;color:var(--accent);'>").append(emptyTitle).append("</h2>");
+                html.append("<p style='color:var(--text-dim);margin-bottom:30px;'>").append(emptyMessage)
+                        .append("</p>");
+
+                html.append(
+                        "<div style='text-align:left;background:rgba(0,0,0,0.3);padding:20px;border-radius:8px;font-family:monospace;font-size:0.9em;margin:0 auto;max-width:600px;'>");
+                html.append("<div style='color:#80CBC4;margin-bottom:8px;'># Command line instructions</div>");
+                html.append("<div style='color:var(--text-dim);'>git init</div>");
+                html.append("<div style='color:var(--text-dim);'>git add .</div>");
+                html.append("<div style='color:var(--text-dim);'>git commit -m \"Initial commit\"</div>");
+                html.append(
+                        "<div style='color:var(--text-dim);'>git remote add origin <span style='color:var(--accent);'>")
+                        .append(httpUrl).append("</span></div>");
+                html.append("<div style='color:var(--text-dim);'>git push -u origin master</div>");
+                html.append("</div>");
+
+                html.append("</div></div></body></html>");
                 repo.close();
-                return newFixedLengthResponse(Response.Status.NOT_FOUND, NanoHTTPD.MIME_HTML, html.toString());
+                return newFixedLengthResponse(Response.Status.OK, NanoHTTPD.MIME_HTML, html.toString());
             }
 
             html.append("<div class='card'><table>");

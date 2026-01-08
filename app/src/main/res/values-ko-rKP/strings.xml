@@ -39,7 +39,9 @@
 	<string name="permissions">권한</string>
 	<string name="edit">편집</string>
 	<string name="activate">공개</string>
-	<string name="deactivate">보관</string>
+	<string name="deactivate">비공개</string>
+	<string name="archive_action">보관</string>
+	<string name="unarchive_action">보관 해제</string>
 	<string name="delete">삭제</string>
 	<string name="repository_details">저장소 상세정보</string>
 	<string name="no_users">사용자 없음</string>
@@ -225,6 +227,8 @@
     <string name="save">저장</string>
     <string name="repository_updated">저장소가 갱신되었습니다</string>
     <string name="repository_created">저장소가 생성되었습니다</string>
+    <string name="repository_archived_toast">저장소가 보관되었습니다</string>
+    <string name="repository_unarchived_toast">저장소 보관이 해제되었습니다</string>
     <string name="error_occurred">오류가 발생하였습니다: %1$s</string>
 
     <string-array name="language_entries">

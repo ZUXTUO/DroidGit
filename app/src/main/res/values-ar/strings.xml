@@ -39,7 +39,9 @@
 	<string name="permissions">الصلاحيات</string>
 	<string name="edit">تعديل</string>
 	<string name="activate">عام</string>
-	<string name="deactivate">أرشفة</string>
+	<string name="deactivate">خاص</string>
+	<string name="archive_action">أرشفة</string>
+	<string name="unarchive_action">إلغاء الأرشفة</string>
 	<string name="delete">حذف</string>
 	<string name="repository_details">تفاصيل المستودع</string>
 	<string name="no_users">لا يوجد مستخدمون</string>
@@ -225,6 +227,8 @@
     <string name="save">حفظ</string>
     <string name="repository_updated">تم تحديث المستودع</string>
     <string name="repository_created">تم إنشاء المستودع</string>
+    <string name="repository_archived_toast">تمت أرشفة المستودع</string>
+    <string name="repository_unarchived_toast">تم إلغاء أرشفة المستودع</string>
     <string name="error_occurred">حدث خطأ: %1$s</string>
 
     <string-array name="language_entries">

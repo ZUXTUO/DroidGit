@@ -5,7 +5,7 @@ import com.j256.ormlite.field.ForeignCollectionField;
 import com.j256.ormlite.table.DatabaseTable;
 
 import java.io.Serializable;
-import java. util.ArrayList;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -118,6 +118,17 @@ public class GitRepository implements Serializable {
         return new ArrayList<>(permissions);
     }
 
+    @DatabaseField(columnName = "archived", defaultValue = "false")
+    private boolean archived;
+
+    public void setArchived(boolean archived) {
+        this.archived = archived;
+    }
+
+    public boolean isArchived() {
+        return archived;
+    }
+
     @Override
     public String toString() {
         return "GitRepository{" +
@@ -125,6 +136,7 @@ public class GitRepository implements Serializable {
                 ", name='" + name + '\'' +
                 ", mapping='" + mapping + '\'' +
                 ", active=" + active +
+                ", archived=" + archived +
                 '}';
     }
 }

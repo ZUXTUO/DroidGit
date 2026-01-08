@@ -6,24 +6,37 @@
     android:orientation="vertical"
     android:padding="16dp">
 
-    <TextView
-        android:id="@+id/repositoriesNoRepositoriesTextView"
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:text="@string/repositories_no_repositories_label"
-        android:textColor="@color/text_tertiary"
-        android:textSize="16sp"
-        android:visibility="gone"/>
+        android:layout_height="match_parent">
 
-    <ListView
-        android:id="@+id/repositoriesListView"
-        style="@style/general_list_style"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:divider="@null"
-        android:dividerHeight="8dp"
-        android:clipToPadding="false"
-        android:paddingBottom="16dp"/>
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/repositoriesNoRepositoriesTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/repositories_no_repositories_label"
+                android:textColor="@color/text_tertiary"
+                android:textSize="16sp"
+                android:visibility="gone"/>
+
+            <ListView
+                android:id="@+id/repositoriesListView"
+                style="@style/general_list_style"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:divider="@null"
+                android:dividerHeight="8dp"
+                android:clipToPadding="false"
+                android:paddingBottom="16dp"/>
+
+        </FrameLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
 </LinearLayout>

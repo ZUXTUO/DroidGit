@@ -12,6 +12,10 @@ import com.olsc.droidgit.data.model.GitRepository;
 
 import java.util.List;
 
+/**
+ * 仓库列表适配器
+ * 用于在列表中显示仓库信息，包括状态（归档、私有等）
+ */
 public class RepositoryListAdapter extends BaseAdapter {
 
     private final LayoutInflater inflater;
@@ -50,7 +54,17 @@ public class RepositoryListAdapter extends BaseAdapter {
         if (repository != null) {
             TextView repositoryName = v.findViewById(R.id.repositoriesItemName);
             if (repositoryName != null) {
-                repositoryName.setText(repository.getName());
+                StringBuilder displayName = new StringBuilder(repository.getName());
+                Context context = parent.getContext();
+
+                if (repository.isArchived()) {
+                    displayName.append(" [").append(context.getString(R.string.archive_action)).append("]");
+                }
+                if (!repository.isActive()) {
+                    displayName.append(" [").append(context.getString(R.string.deactivate)).append("]");
+                }
+
+                repositoryName.setText(displayName.toString());
             }
         }
 

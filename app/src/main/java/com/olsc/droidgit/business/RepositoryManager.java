@@ -11,6 +11,14 @@ import com.olsc.droidgit.util.Constants;
 
 import org.eclipse.jgit.api.Git;
 import org.eclipse.jgit.api.errors.GitAPIException;
+import org.eclipse.jgit.lib.CommitBuilder;
+import org.eclipse.jgit.lib.FileMode;
+import org.eclipse.jgit.lib.ObjectId;
+import org.eclipse.jgit.lib.ObjectInserter;
+import org.eclipse.jgit.lib.PersonIdent;
+import org.eclipse.jgit.lib.RefUpdate;
+import org.eclipse.jgit.lib.TreeFormatter;
+import java.io.InputStream;
 
 import java.io.File;
 import java.io.IOException;
@@ -86,6 +94,10 @@ public class RepositoryManager {
                         .setDirectory(repoDir)
                         .setBare(true)
                         .call();
+
+                // Add default assets
+                addDefaultAssets(git.getRepository());
+
                 git.close();
                 Log.i(TAG, "Created Git repository: " + repoDir.getAbsolutePath());
             } catch (GitAPIException e) {
@@ -218,6 +230,27 @@ public class RepositoryManager {
     }
 
     /**
+     * 归档仓库
+     *
+     * @param repositoryId 仓库ID
+     */
+    public void archiveRepository(int repositoryId) throws RepositoryException {
+        try {
+            GitRepository repository = dbManager.getRepositoryDao().queryForId(repositoryId);
+            if (repository == null) {
+                throw new RepositoryException("Repository not found: " + repositoryId);
+            }
+
+            repository.setArchived(true);
+            dbManager.getRepositoryDao().update(repository);
+            Log.i(TAG, "Archived repository: " + repository.getName());
+
+        } catch (SQLException e) {
+            throw new RepositoryException("Database error while archiving repository", e);
+        }
+    }
+
+    /**
      * 更新仓库信息
      */
     public void updateRepository(int repositoryId, String description)
@@ -337,6 +370,65 @@ public class RepositoryManager {
 
         public RepositoryException(String message, Throwable cause) {
             super(message, cause);
+        }
+    }
+
+    /**
+     * 读取对应asset文件的内容
+     */
+    private byte[] readAssetContent(String fileName) throws IOException {
+        try (InputStream is = context.getAssets().open(fileName);
+                java.io.ByteArrayOutputStream buffer = new java.io.ByteArrayOutputStream()) {
+            int nRead;
+            byte[] data = new byte[1024];
+            while ((nRead = is.read(data, 0, data.length)) != -1) {
+                buffer.write(data, 0, nRead);
+            }
+            return buffer.toByteArray();
+        }
+    }
+
+    /**
+     * 将 assets/git_default_assets 下的文件添加到新创建的仓库中作为初始提交
+     */
+    private void addDefaultAssets(org.eclipse.jgit.lib.Repository repo) {
+        try {
+            String assetFolder = "git_default_assets";
+            String[] files = context.getAssets().list(assetFolder);
+            if (files == null || files.length == 0)
+                return;
+
+            ObjectInserter inserter = repo.newObjectInserter();
+            TreeFormatter treeFormatter = new TreeFormatter();
+
+            // 为了保证tree里的顺序（git要求tree entry按名称排序），我们需要对filenames排序
+            java.util.Arrays.sort(files);
+
+            for (String fileName : files) {
+                byte[] content = readAssetContent(assetFolder + "/" + fileName);
+                ObjectId blobId = inserter.insert(org.eclipse.jgit.lib.Constants.OBJ_BLOB, content);
+                treeFormatter.append(fileName, FileMode.REGULAR_FILE, blobId);
+            }
+
+            ObjectId treeId = inserter.insert(treeFormatter);
+
+            CommitBuilder commitBuilder = new CommitBuilder();
+            commitBuilder.setTreeId(treeId);
+            PersonIdent author = new PersonIdent("DroidGit", "admin@droidgit.local");
+            commitBuilder.setAuthor(author);
+            commitBuilder.setCommitter(author);
+            commitBuilder.setMessage("Initial commit");
+
+            ObjectId commitId = inserter.insert(commitBuilder);
+            inserter.flush();
+
+            RefUpdate ru = repo.updateRef(org.eclipse.jgit.lib.Constants.HEAD);
+            ru.setNewObjectId(commitId);
+            ru.update();
+            Log.i(TAG, "Added default assets to repository");
+
+        } catch (Exception e) {
+            Log.e(TAG, "Failed to add default assets to new repository", e);
         }
     }
 }

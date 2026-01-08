@@ -19,6 +19,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.olsc.droidgit.R;
 import com.olsc.droidgit.business.RepositoryManager;
@@ -26,11 +27,13 @@ import com.olsc.droidgit.data.model.GitRepository;
 
 import java.util.List;
 
-public class RepositoryListFragment extends Fragment implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
+public class RepositoryListFragment extends Fragment
+        implements AdapterView.OnItemClickListener, AdapterView.OnItemLongClickListener {
 
     private static final String TAG = "RepositoryListFragment";
-    
+
     private ListView repositoriesListView;
+    private SwipeRefreshLayout swipeRefreshLayout;
     private TextView noRepositoriesTextView;
     private RepositoryListAdapter adapter;
     private RepositoryManager repositoryManager;
@@ -38,11 +41,15 @@ public class RepositoryListFragment extends Fragment implements AdapterView.OnIt
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
+            @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_repositories_zen, container, false);
 
         repositoriesListView = view.findViewById(R.id.repositoriesListView);
         noRepositoriesTextView = view.findViewById(R.id.repositoriesNoRepositoriesTextView);
+        swipeRefreshLayout = view.findViewById(R.id.swipeRefreshLayout);
+
+        swipeRefreshLayout.setOnRefreshListener(this::loadRepositories);
 
         repositoriesListView.setOnItemClickListener(this);
         repositoriesListView.setOnItemLongClickListener(this);
@@ -90,6 +97,10 @@ public class RepositoryListFragment extends Fragment implements AdapterView.OnIt
         } catch (Exception e) {
             Log.e(TAG, "Error loading repositories", e);
             Toast.makeText(getContext(), R.string.error_loading_repositories, Toast.LENGTH_SHORT).show();
+        } finally {
+            if (swipeRefreshLayout != null) {
+                swipeRefreshLayout.setRefreshing(false);
+            }
         }
     }
 
@@ -128,20 +139,33 @@ public class RepositoryListFragment extends Fragment implements AdapterView.OnIt
 
         @Override
         public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-            if (repository == null) return false;
-            
+            if (repository == null)
+                return false;
+
             mode.setTitle(repository.getName());
-            
-            menu.add(0, 1, 0, R.string.delete).setIcon(R.drawable.ic_actionbar_delete).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            
+
+            // ID 1: Delete
+            menu.add(0, 1, 0, R.string.delete).setIcon(R.drawable.ic_actionbar_delete)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+            // ID 2/3: Activate/Deactivate (Public/Private)
             if (!repository.isActive()) {
                 menu.add(0, 2, 0, R.string.activate);
             } else {
                 menu.add(0, 3, 0, R.string.deactivate);
             }
-            
-            menu.add(0, 4, 0, R.string.edit).setIcon(R.drawable.ic_actionbar_edit).setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
-            
+
+            // ID 5/6: Archive/Unarchive
+            if (repository.isArchived()) {
+                menu.add(0, 6, 0, R.string.unarchive_action);
+            } else {
+                menu.add(0, 5, 0, R.string.archive_action);
+            }
+
+            // ID 4: Edit
+            menu.add(0, 4, 0, R.string.edit).setIcon(R.drawable.ic_actionbar_edit)
+                    .setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
             return true;
         }
 
@@ -156,14 +180,20 @@ public class RepositoryListFragment extends Fragment implements AdapterView.OnIt
                 case 1: // 删除
                     confirmDelete(repository);
                     break;
-                case 2: // 激活
+                case 2: // 激活 (Public)
                     toggleActive(repository, true);
                     break;
-                case 3: // 停用
+                case 3: // 停用 (Private)
                     toggleActive(repository, false);
                     break;
                 case 4: // 编辑
                     openRepositoryEdit(repository.getId());
+                    break;
+                case 5: // 归档
+                    toggleArchive(repository, true);
+                    break;
+                case 6: // 取消归档
+                    toggleArchive(repository, false);
                     break;
             }
             mode.finish();
@@ -200,6 +230,21 @@ public class RepositoryListFragment extends Fragment implements AdapterView.OnIt
             loadRepositories();
         } catch (Exception e) {
             Log.e(TAG, "Error updating repository", e);
+            Toast.makeText(getContext(), R.string.error_updating_repository, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    private void toggleArchive(GitRepository repository, boolean archived) {
+        try {
+            repository.setArchived(archived);
+            repositoryManager.updateRepository(repository);
+            loadRepositories();
+
+            String message = archived ? getString(R.string.repository_archived_toast)
+                    : getString(R.string.repository_unarchived_toast);
+            Toast.makeText(getContext(), message, Toast.LENGTH_SHORT).show();
+        } catch (Exception e) {
+            Log.e(TAG, "Error updating repository archive status", e);
             Toast.makeText(getContext(), R.string.error_updating_repository, Toast.LENGTH_SHORT).show();
         }
     }

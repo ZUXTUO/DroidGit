@@ -16,6 +16,10 @@ import com.olsc.droidgit.util.LocaleHelper;
 import com.olsc.droidgit.ui.home.MainActivity;
 import com.olsc.droidgit.util.Constants;
 
+/**
+ * 设置页面 Activity
+ * 承载设置 Fragment，处理语言切换等逻辑
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     @Override
@@ -25,10 +29,10 @@ public class SettingsActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setTheme(R.style.AppTheme); 
+        setTheme(R.style.AppTheme);
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setup_zen);
-        
+
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setTitle(R.string.activity_settings_label);
@@ -48,13 +52,14 @@ public class SettingsActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static class SettingsFragment extends PreferenceFragment
+            implements SharedPreferences.OnSharedPreferenceChangeListener {
 
         @Override
         public void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             addPreferencesFromResource(R.xml.preferences_http);
-            
+
             updateSummaries();
         }
 
@@ -76,7 +81,7 @@ public class SettingsActivity extends AppCompatActivity {
         @Override
         public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
             updateSummaries();
-            
+
             if (Constants.Prefs.LANGUAGE.equals(key)) {
                 if (getActivity() != null) {
                     Intent intent = new Intent(getActivity(), MainActivity.class);
@@ -91,7 +96,7 @@ public class SettingsActivity extends AppCompatActivity {
             EditTextPreference portPref = (EditTextPreference) findPreference(Constants.Prefs.HTTP_PORT);
             if (portPref != null) {
                 portPref.setSummary(portPref.getText());
-                portPref.setTitle(R.string.settings_http_server_port); 
+                portPref.setTitle(R.string.settings_http_server_port);
             }
 
             EditTextPreference dirPref = (EditTextPreference) findPreference(Constants.Prefs.GIT_ROOT_DIR);

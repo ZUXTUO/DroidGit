@@ -39,7 +39,9 @@
 	<string name="permissions">权限</string>
 	<string name="edit">编辑</string>
 	<string name="activate">公开</string>
-	<string name="deactivate">归档</string>
+	<string name="deactivate">私有</string>
+	<string name="archive_action">归档</string>
+	<string name="unarchive_action">取消归档</string>
 	<string name="delete">删除</string>
 	<string name="repository_details">代码库详情</string>
 	<string name="no_users">没有用户</string>
@@ -229,6 +231,8 @@
     <string name="save">保存</string>
     <string name="repository_updated">代码库已更新</string>
     <string name="repository_created">代码库已创建</string>
+    <string name="repository_archived_toast">代码库已归档</string>
+    <string name="repository_unarchived_toast">代码库已取消归档</string>
     <string name="error_occurred">发生错误: %1$s</string>
 
     <string-array name="language_entries">

@@ -39,7 +39,9 @@
 	<string name="permissions">Разрешения</string>
 	<string name="edit">Изменить</string>
 	<string name="activate">Публичный</string>
-	<string name="deactivate">Архив</string>
+	<string name="deactivate">Частный</string>
+	<string name="archive_action">Архивировать</string>
+	<string name="unarchive_action">Разархивировать</string>
 	<string name="delete">Удалить</string>
 	<string name="repository_details">Детали репозитория</string>
 	<string name="no_users">Нет пользователей</string>
@@ -225,6 +227,8 @@
     <string name="save">Сохранить</string>
     <string name="repository_updated">Репозиторий обновлен</string>
     <string name="repository_created">Репозиторий создан</string>
+    <string name="repository_archived_toast">Репозиторий заархивирован</string>
+    <string name="repository_unarchived_toast">Репозиторий разархивирован</string>
     <string name="error_occurred">Произошла ошибка: %1$s</string>
 
     <string-array name="language_entries">

@@ -39,7 +39,9 @@
 	<string name="permissions">権限</string>
 	<string name="edit">編集</string>
 	<string name="activate">公開</string>
-	<string name="deactivate">アーカイブ</string>
+	<string name="deactivate">非公開</string>
+	<string name="archive_action">アーカイブ</string>
+	<string name="unarchive_action">アーカイブ解除</string>
 	<string name="delete">削除</string>
 	<string name="repository_details">リポジトリ詳細</string>
 	<string name="no_users">ユーザーなし</string>
@@ -226,6 +228,8 @@
     <string name="save">保存</string>
     <string name="repository_updated">リポジトリを更新しました</string>
     <string name="repository_created">リポジトリを作成しました</string>
+    <string name="repository_archived_toast">リポジトリをアーカイブしました</string>
+    <string name="repository_unarchived_toast">リポジトリのアーカイブを解除しました</string>
     <string name="error_occurred">エラーが発生しました: %1$s</string>
 
     <string-array name="language_entries">

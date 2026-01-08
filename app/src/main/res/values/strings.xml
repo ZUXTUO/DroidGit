@@ -39,7 +39,9 @@
 	<string name="permissions">Permissions</string>
 	<string name="edit">Edit</string>
 	<string name="activate">Public</string>
-	<string name="deactivate">Archive</string>
+	<string name="deactivate">Private</string>
+	<string name="archive_action">Archive</string>
+	<string name="unarchive_action">Unarchive</string>
 	<string name="delete">Delete</string>
 	<string name="repository_details">Repository details</string>
 	<string name="no_users">No users</string>
@@ -236,6 +238,8 @@ Go to settings now?</string>
     <string name="save">Save</string>
     <string name="repository_updated">Repository updated</string>
     <string name="repository_created">Repository created</string>
+    <string name="repository_archived_toast">Repository archived</string>
+    <string name="repository_unarchived_toast">Repository unarchived</string>
     <string name="error_occurred">An error occurred: %1$s</string>
 
     <string-array name="language_entries">
